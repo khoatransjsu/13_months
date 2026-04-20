@@ -110,6 +110,38 @@ section{position:relative;overflow:hidden;}
 .vow-p:nth-child(3){transition-delay:.28s;}
 .vow-p:nth-child(4){transition-delay:.42s;}
 
+/* MUSIC PLAYER */
+#musicToast{position:fixed;top:0;left:0;right:0;z-index:9500;background:linear-gradient(135deg,rgba(10,4,26,0.97),rgba(20,8,48,0.97));border-bottom:1px solid rgba(212,175,106,0.2);backdrop-filter:blur(20px);padding:22px 32px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transform:translateY(0);transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
+#musicToast.hidden{transform:translateY(-100%);}
+.toast-title{font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--gold2);letter-spacing:0.2em;}
+.toast-sub{font-family:'Raleway',sans-serif;font-weight:200;font-size:12px;color:rgba(248,237,216,0.55);letter-spacing:0.15em;text-align:center;}
+.toast-btns{display:flex;gap:12px;align-items:center;}
+#playBtn{background:linear-gradient(135deg,var(--gold3),var(--gold));border:none;color:#060210;font-family:'Raleway',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;padding:12px 32px;border-radius:30px;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 0 20px rgba(212,175,106,0.3);}
+#playBtn:hover{transform:scale(1.05);box-shadow:0 0 32px rgba(212,175,106,0.5);}
+#skipBtn{background:transparent;border:1px solid rgba(212,175,106,0.25);color:rgba(248,237,216,0.45);font-family:'Raleway',sans-serif;font-size:11px;letter-spacing:0.15em;padding:12px 20px;border-radius:30px;cursor:pointer;transition:border-color .2s,color .2s;}
+#skipBtn:hover{border-color:rgba(212,175,106,0.5);color:rgba(248,237,216,0.7);}
+
+/* MUSIC WIDGET (bottom right, shown after playing) */
+#musicWidget{position:fixed;bottom:24px;right:24px;z-index:9400;display:flex;align-items:center;gap:10px;background:rgba(6,2,16,0.88);border:1px solid rgba(212,175,106,0.2);backdrop-filter:blur(16px);padding:10px 16px 10px 12px;border-radius:40px;box-shadow:0 4px 30px rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.5s;}
+#musicWidget.show{opacity:1;pointer-events:all;}
+#muteBtn{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold3),var(--gold));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:transform .2s;color:#060210;font-weight:bold;}
+#muteBtn:hover{transform:scale(1.1);}
+.w-info{display:flex;flex-direction:column;gap:1px;}
+.w-title{font-size:10px;letter-spacing:0.1em;color:var(--gold2);font-weight:300;}
+.w-bars{display:flex;align-items:flex-end;gap:2px;height:14px;margin-top:2px;}
+.w-bar{width:3px;border-radius:2px;background:var(--gold);animation:barUp 0.7s ease-in-out infinite alternate;}
+.w-bar:nth-child(1){animation-delay:0s;--h:10px;}
+.w-bar:nth-child(2){animation-delay:.12s;--h:14px;}
+.w-bar:nth-child(3){animation-delay:.24s;--h:8px;}
+.w-bar:nth-child(4){animation-delay:.08s;--h:12px;}
+.w-bar:nth-child(5){animation-delay:.18s;--h:6px;}
+@keyframes barUp{from{height:3px;opacity:0.4}to{height:var(--h,10px);opacity:1}}
+#musicWidget.paused .w-bar{animation-play-state:paused;height:3px;}
+.vol-wrap{display:flex;align-items:center;gap:6px;margin-left:4px;}
+.vol-wrap span{font-size:12px;}
+#volSlider{-webkit-appearance:none;appearance:none;width:60px;height:2px;border-radius:2px;background:rgba(212,175,106,0.2);outline:none;cursor:pointer;}
+#volSlider::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold);cursor:pointer;}
+
 /* LETTER */
 #letter{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 24px;}
 .l-paper{max-width:700px;width:100%;background:linear-gradient(160deg,rgba(248,237,216,0.04),rgba(212,175,106,0.02));border:1px solid rgba(212,175,106,0.2);padding:68px 60px;position:relative;opacity:0;transform:scale(0.96) translateY(28px);transition:opacity 1s,transform 1s;}
@@ -159,9 +191,55 @@ section{position:relative;overflow:hidden;}
 @keyframes riseIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:680px){.vow-grid{grid-template-columns:1fr}.l-paper{padding:44px 26px}}
+
+#musicPlayer{position:fixed;bottom:28px;right:28px;z-index:8000;display:flex;align-items:center;gap:12px;background:rgba(6,2,16,0.85);border:1px solid rgba(212,175,106,0.25);backdrop-filter:blur(16px);padding:12px 18px 12px 14px;border-radius:40px;box-shadow:0 8px 40px rgba(0,0,0,0.5);transition:border-color .3s;}
+#musicPlayer:hover{border-color:rgba(212,175,106,0.5);}
+#musicBtn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#A07030,#D4AF6A);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:#060210;font-weight:bold;transition:transform .2s,box-shadow .2s;box-shadow:0 0 14px rgba(212,175,106,0.35);}
+#musicBtn:hover{transform:scale(1.1);box-shadow:0 0 24px rgba(212,175,106,0.6);}
+.music-info{display:flex;flex-direction:column;gap:2px;}
+.music-title{font-size:11px;font-weight:300;letter-spacing:0.08em;color:#F2D680;}
+.music-sub{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(212,175,106,0.45);}
+.music-bars{display:flex;align-items:flex-end;gap:2px;height:18px;margin-left:4px;}
+.music-bar{width:3px;border-radius:2px;background:var(--gold);animation:barBounce 0.8s ease-in-out infinite alternate;}
+.music-bar:nth-child(2){animation-delay:.15s;}.music-bar:nth-child(3){animation-delay:.3s;}.music-bar:nth-child(4){animation-delay:.1s;}.music-bar:nth-child(5){animation-delay:.25s;}
+@keyframes barBounce{from{height:4px;opacity:0.4}to{height:16px;opacity:1}}
+#musicPlayer.paused .music-bars .music-bar{animation-play-state:paused;}
 </style>
 </head>
 <body>
+
+<!-- ══ AUDIO — put music.mp3 in the same folder as this file ══ -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ══ MUSIC TOAST (shown on load) ══ -->
+<div id="musicToast">
+  <p class="toast-title">♪ &nbsp; Bài nhạc dành cho em</p>
+  <div class="toast-btns">
+    <button id="playBtn">▶ &nbsp; Chơi nhạc</button>
+    <button id="skipBtn">Tiếp tục mà không có nhạc</button>
+  </div>
+</div>
+
+<!-- ══ MUSIC WIDGET (bottom-right, after playing) ══ -->
+<div id="musicWidget">
+  <button id="muteBtn" title="Pause / Resume">❚❚</button>
+  <div class="w-info">
+    <span class="w-title">♪ Stand By Me</span>
+    <div class="w-bars">
+      <div class="w-bar"></div>
+      <div class="w-bar"></div>
+      <div class="w-bar"></div>
+      <div class="w-bar"></div>
+      <div class="w-bar"></div>
+    </div>
+  </div>
+  <div class="vol-wrap">
+    <span>🔈</span>
+    <input type="range" id="volSlider" min="0" max="1" step="0.05" value="0.6">
+  </div>
+</div>
 
 <div id="loader"><div class="ld-ring"></div><p class="ld-text">Chuẩn bị và đang load nha em...</p></div>
 <div id="cur"></div><div id="cur2"></div><div id="cur3"></div>
@@ -541,6 +619,62 @@ function boot(){
   initVows(); initPromises(); initFW();
   observeReveal();
 }
+
+// ══ MUSIC PLAYER ══
+(function(){
+  const audio   = document.getElementById('bgMusic');
+  const toast   = document.getElementById('musicToast');
+  const widget  = document.getElementById('musicWidget');
+  const playBtn = document.getElementById('playBtn');
+  const skipBtn = document.getElementById('skipBtn');
+  const muteBtn = document.getElementById('muteBtn');
+  const volSlider = document.getElementById('volSlider');
+  let playing = false;
+
+  function fadeVolTo(target, duration, cb){
+    const start = audio.volume;
+    const diff  = target - start;
+    const steps = Math.ceil(duration / 50);
+    let i = 0;
+    const t = setInterval(()=>{
+      i++;
+      audio.volume = Math.min(1, Math.max(0, start + diff * (i/steps)));
+      if(i >= steps){ clearInterval(t); if(cb) cb(); }
+    }, 50);
+  }
+
+  function startMusic(){
+    audio.volume = 0;
+    audio.play().then(()=>{
+      playing = true;
+      fadeVolTo(parseFloat(volSlider.value), 2000);
+      toast.classList.add('hidden');
+      widget.classList.add('show');
+      muteBtn.textContent = '❚❚';
+      widget.classList.remove('paused');
+    }).catch(err=>{
+      console.warn('Audio play failed:', err);
+    });
+  }
+
+  function pauseMusic(){
+    fadeVolTo(0, 600, ()=>{ audio.pause(); playing=false; muteBtn.textContent='▶'; widget.classList.add('paused'); });
+  }
+
+  function resumeMusic(){
+    audio.volume = 0;
+    audio.play().then(()=>{ playing=true; fadeVolTo(parseFloat(volSlider.value),800); muteBtn.textContent='❚❚'; widget.classList.remove('paused'); }).catch(()=>{});
+  }
+
+  playBtn.addEventListener('click', startMusic);
+  skipBtn.addEventListener('click', ()=>{ toast.classList.add('hidden'); });
+  muteBtn.addEventListener('click', ()=>{ if(playing) pauseMusic(); else resumeMusic(); });
+  volSlider.addEventListener('input', ()=>{ if(playing) audio.volume = parseFloat(volSlider.value); });
+})();
+
 </script>
+
+<audio id="bgMusic" src="./music.mp3" loop preload="auto"></audio>
+
 </body>
 </html>
